@@ -1,5 +1,6 @@
 import Image from "next/image";
-import React from "react";
+import React, { useState } from "react";
+import axios from "axios";
 import azuraLogo from "../public/svgs/azuraLogo.svg";
 import AzureLogo from "../public/images/Microsoft_Azure.png";
 
@@ -21,12 +22,71 @@ const style = {
   answerSection: `absolute left-[50%] -translate-x-[50%] top-[40%] text-white text-4xl text-center`,
   textHolder: `flex flex-row justify-center align-center items-center`,
   answer: `select-text`,
-  emotes: `flex justify-center pt-[3.5rem] pb-[2.6rem] animate-bounce`,
+  emotes: `cursor-pointer text-white text-[3.5rem] flex justify-center pt-[0.5rem] pb-[0.6rem] mt-[3rem] mb-[2rem] animate-bounce`,
   submitBtn: `absolute left-[50%] -translate-x-[50%] cursor-pointer bg-white w-[7rem] h-[2.4rem] flex justify-center items-center rounded text-black hover:bg-black hover:text-white`,
   btnText: `text-xl`,
+  bottomContainer: `absolute bottom-[30%] left-[50%] -translate-x-[50%]`,
 };
 
 const Tool = () => {
+  const [imageUrl, setImageUrl] = useState<string>("");
+  const [description, setDescription] = useState<string>("");
+  const [emoji, setEmoji] = useState<string>("🚀");
+
+  const allEmotes = new Array(
+    "🦊",
+    "🚀",
+    "🔥",
+    "🍪",
+    "🌏",
+    "😎",
+    "😍",
+    "😴",
+    "😄",
+    "👋",
+    "😍",
+    "😅",
+    "🤩",
+    "🥱",
+    "😠",
+    "😇",
+    "🥳",
+    "🦄"
+  );
+
+  const onTweak = async () => {
+    var randomIndex = Math.floor(Math.random() * 19);
+    if (randomIndex === 18) {
+      setEmoji("You're Cute!");
+    } else {
+      if (randomIndex === 17) {
+        var audio = new Audio(
+          "https://static.wikia.nocookie.net/dota2_gamepedia/images/b/b2/Misc_soundboard_fall2021eventgame_reward7.mp3"
+        );
+        await audio.play();
+      }
+      setEmoji(allEmotes[randomIndex]);
+    }
+  };
+
+  if (!description) {
+    setDescription("Paste an Image URL up there!");
+  }
+
+  const onImgUrlChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    setImageUrl(e.target.value);
+  };
+
+  const onSubmit = async () => {
+    const res = await axios.post(
+      "https://azura-backend.herokuapp.com/describe",
+      {
+        imageUrl,
+      }
+    );
+    setDescription(res.data);
+  };
+
   return (
     <>
       <div className={style.bgContainer}>
@@ -62,10 +122,11 @@ const Tool = () => {
           <div className={style.centerContainer}>
             <p className={style.searchTop}>SEARCH BY IMAGE URL</p>
             <input
+              value={imageUrl}
+              onChange={onImgUrlChange}
               type="url"
               placeholder="PASTE HERE"
               className={style.searchArea}
-              id="imgAddress"
             />
             <div className={style.poweredContainer}>
               <div className={style.poweredText}>
@@ -81,9 +142,7 @@ const Tool = () => {
           <div className={style.answerSection}>
             <div className={style.textHolder}>
               <span>“</span>
-              <div className={style.answer} id="answer">
-                Paste an Image URL up there!
-              </div>
+              <div className={style.answer}>{description}</div>
               <span>”</span>
             </div>
             <style jsx>{`
@@ -93,17 +152,12 @@ const Tool = () => {
                 font-size: 4rem;
               }
             `}</style>
-            <div id="myRocket" className={style.emotes}>
-              🚀
+          </div>
+          <div className={style.bottomContainer}>
+            <div onClick={onTweak} className={style.emotes}>
+              {emoji}
             </div>
-            <style jsx>{`
-              #myRocket {
-                cursor: pointer;
-                font-size: 3.5rem;
-                transition: 1s;
-              }
-            `}</style>
-            <div className={style.submitBtn}>
+            <div onClick={onSubmit} className={style.submitBtn}>
               <div className={style.btnText}>Search</div>
             </div>
           </div>
