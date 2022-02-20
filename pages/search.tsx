@@ -12,16 +12,18 @@ const style = {
   logo: `flex flex-row items-center`,
   logoImage: ``,
   meetDev: ``,
-  centerContainer: `absolute top-[25%] left-[50%] -translate-x-[50%] `,
+  centerContainer: `absolute top-[15%] left-[50%] -translate-x-[50%] `,
   searchTop: `text-white text-md`,
   searchArea: `w-[55vw] h-[5rem] rounded-xl opacity-70 pl-[1.5rem] pr-[1.5rem] outline-none focus:border-0 focus:opacity-90 placeholder:text-black`,
   poweredContainer: `absolute left-[50%] -translate-x-[50%] flex flex-row items-center mt-[2rem]`,
   poweredText: `text-[#d3d3d3]`,
   poweredImg: ``,
-  answerSection: `absolute left-[50%] -translate-x-[50%] top-[50%] text-white text-4xl text-center`,
+  answerSection: `absolute left-[50%] -translate-x-[50%] top-[40%] text-white text-4xl text-center`,
   textHolder: `flex flex-row justify-center align-center items-center`,
-  answer: ``,
-  emotes: `flex justify-center pt-[3.2rem] animate-bounce`,
+  answer: `select-text`,
+  emotes: `flex justify-center pt-[3.5rem] pb-[2.6rem] animate-bounce`,
+  submitBtn: `absolute left-[50%] -translate-x-[50%] cursor-pointer bg-white w-[7rem] h-[2.4rem] flex justify-center items-center rounded text-black hover:bg-black hover:text-white`,
+  btnText: `text-xl`,
 };
 
 const Tool = () => {
@@ -63,6 +65,7 @@ const Tool = () => {
               type="url"
               placeholder="PASTE HERE"
               className={style.searchArea}
+              id="imgAddress"
             />
             <div className={style.poweredContainer}>
               <div className={style.poweredText}>
@@ -78,12 +81,15 @@ const Tool = () => {
           <div className={style.answerSection}>
             <div className={style.textHolder}>
               <span>“</span>
-              <div className={style.answer}>Paste an Image URL here!</div>
+              <div className={style.answer} id="answer">
+                Paste an Image URL up there!
+              </div>
               <span>”</span>
             </div>
             <style jsx>{`
               span {
-                font-family: LEMON MILK !important;
+                font-family: sans !important;
+                font-weight: bold;
                 font-size: 4rem;
               }
             `}</style>
@@ -95,22 +101,11 @@ const Tool = () => {
                 cursor: pointer;
                 font-size: 3.5rem;
                 transition: 1s;
-
-                // animation: rocketWave 2s ease-in infinite;
-
-                // @keyframes rocketWave {
-                //   0% {
-                //     font-size: 4rem;
-                //   }
-                //   50% {
-                //     font-size: 3.5rem;
-                //   }
-                //   100% {
-                //     font-size: 4rem;
-                //   }
-                // }
               }
             `}</style>
+            <div className={style.submitBtn}>
+              <div className={style.btnText}>Search</div>
+            </div>
           </div>
         </div>
       </div>
