@@ -2,7 +2,7 @@ import type { NextPage } from "next";
 import Image from "next/image";
 import Link from "next/link";
 import React from "react";
-import Splash from "../public/images/Splash.svg";
+import Splash from "../public/svgs/Splash.svg";
 import AzureLogo from "../public/images/Microsoft_Azure.png";
 import Timeline from "../public/svgs/Timeline";
 
