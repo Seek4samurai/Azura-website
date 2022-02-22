@@ -3,6 +3,7 @@ import React, { useState } from "react";
 import axios from "axios";
 import azuraLogo from "../public/svgs/azuraLogo.svg";
 import AzureLogo from "../public/images/Microsoft_Azure.png";
+import Link from "next/link";
 
 const style = {
   bgContainer: `select-none font-light`,
@@ -96,23 +97,21 @@ const Tool = () => {
           <div className={style.navContainer}>
             <div className="textHere">
               <div className={style.navBar}>
-                <a href="/" className={style.logo}>
-                  <Image
-                    src={azuraLogo}
-                    alt="azure"
-                    width={40}
-                    height={40}
-                    className={style.logoImage}
-                  />
-                  <div>Azura</div>
-                </a>
-                <a
-                  href="https://www.github.com/seek4samurai"
-                  target="_blank"
-                  className={style.meetDev}
-                >
-                  Meet Developer
-                </a>
+                <Link passHref href="/">
+                  <div className={style.logo}>
+                    <Image
+                      src={azuraLogo}
+                      alt="azure"
+                      width={40}
+                      height={40}
+                      className={style.logoImage}
+                    />
+                    <div>Azura</div>
+                  </div>
+                </Link>
+                <Link passHref href="https://www.github.com/seek4samurai">
+                  <div className={style.meetDev}>Meet Developer</div>
+                </Link>
               </div>
             </div>
             <style jsx>{`
@@ -136,9 +135,9 @@ const Tool = () => {
                   Powered by Microsoft Azure
                 </div>
                 <div className={style.poweredImg}>
-                  <a href="https://azure.microsoft.com/" target="_blank">
+                  <Link passHref href="https://azure.microsoft.com/">
                     <Image src={AzureLogo} alt="Azure" width={39} height={39} />
-                  </a>
+                  </Link>
                 </div>
               </div>
             </div>

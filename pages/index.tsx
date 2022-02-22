@@ -30,18 +30,16 @@ const Home: NextPage = () => {
           <div className={style.listContainer}>
             <ul className={style.textList}>
               <li className={style.listItem}>
-                <Link href="./search">
-                  <a>Check Out 🚀</a>
-                </Link>
+                <Link href="./search">Check Out 🚀</Link>
               </li>
               <li className={style.listItem}>
                 <Link href="https://github.com/seek4samurai">
-                  <a target="_blank">Meet Creator! 😇</a>
+                  Meet Creator! 😇
                 </Link>
               </li>
               <li className={style.listItem}>
                 <Link href="https://github.com/seek4samurai/azura">
-                  <a target="_blank">Repository 🌏</a>
+                  Repository 🌏
                 </Link>
               </li>
             </ul>
@@ -58,9 +56,11 @@ const Home: NextPage = () => {
         <div className={style.poweredContainer}>
           <div className={style.poweredText}>Powered by Microsoft Azure</div>
           <div className={style.poweredImg}>
-            <a href="https://azure.microsoft.com/" target="_blank">
-              <Image src={AzureLogo} alt="Azure" width={39} height={39} />
-            </a>
+            <Link href="https://azure.microsoft.com/">
+              <a>
+                <Image src={AzureLogo} alt="Azure" width={39} height={39} />
+              </a>
+            </Link>
           </div>
         </div>
       </div>
